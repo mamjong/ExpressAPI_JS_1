@@ -8,9 +8,8 @@ app.all('*', function (req, res, next) {
     next();
 })
 
-app.use()
+app.use('/api/v2', require('/routes/routes_api_v1'));
 
-app.use()
 
 app.get('*', function (req, res, next) {
     res.json({
@@ -22,4 +21,4 @@ app.listen(port, function () {
     console.log("Server open at " + port);
 })
 
-module.exports = app;
+module.exports = server;
