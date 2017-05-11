@@ -1,3 +1,7 @@
 {
-  "WebPort" : "1337"
+  "WebPort": "1337",
+  "sever": "localhost",
+  "password": "ulu",
+  "username": "ulu",
+  "dbname": "world"
 }
