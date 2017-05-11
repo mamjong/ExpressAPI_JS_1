@@ -1,7 +1,7 @@
 {
   "WebPort": "1337",
-  "sever": "localhost",
-  "password": "ulu",
-  "username": "ulu",
+  "server": "localhost",
+  "password": "DEGnMLR7QSXRutJR",
+  "username": "WorldAdmin",
   "dbname": "world"
 }
