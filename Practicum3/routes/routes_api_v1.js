@@ -82,7 +82,41 @@ router.post("/countries", function (req, res, next) {
             res.status(200).json(rows);
         })
     })
+});
 
+router.put("/countries/:code", function (req, res, next) {
+    var country = req.body;
+    var code = req.params.code;
+
+    var query = {
+        sql : 'UPDATE `country` SET Name = ? WHERE Code = "' + code + '"',
+        values : [country.Name],
+        timeout : 2000
+    };
+    console.log('query', query.sql);
+    res.contentType("application/json");
+    pool.getConnection(function (err, connection) {
+        if (err) {throw err}
+        connection.query(query, function (err, rows, fields) {
+            connection.release();
+            if (err) {throw err}
+            res.status(200).json(rows);
+        })
+    })
+});
+
+router.delete('/countries/:code', function (req, res) {
+    var code = req.params.code;
+    var query = 'DELETE FROM country WHERE Code = "' + code + '"';
+
+    pool.getConnection(function (err, connection) {
+        if (err) {throw error}
+        connection.query(query, function (err, rows, fields) {
+            connection.release();
+            if (err) {throw err}
+            res.status(200).json(rows);
+        })
+    })
 });
 
 router.get("*", function (req, res) {
