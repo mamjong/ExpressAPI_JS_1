@@ -1,3 +1,4 @@
+var http = require('http');
 var express = require('express');
 var server = express();
 var config = require('./config.json');
