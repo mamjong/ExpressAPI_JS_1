@@ -60,5 +60,41 @@ router.post("/cities", function (req, res, next) {
     });
 });
 
+router.put("/cities/:id", function (req, res, next) {
+    var city = req.body;
+    var id = req.params.id;
+
+    var query = {
+        sql : 'UPDATE `city` SET Name = ?, District = ?, Population = ? WHERE ID = ' + id,
+        values : [city.Name, city.District, city.Population],
+        timeout : 2000
+    }
+    console.log('query', query.sql);
+    res.contentType("application/json");
+    pool.getConnection(function (err, connection) {
+        if(err){throw err}
+        connection.query(query, function (err, rows, fields) {
+            connection.release();
+            if(err){throw err}
+            res.status(200).json(rows);
+        });
+    });
+});
+
+router.delete("/cities/:id", function (req, res, next) {
+    var id = req.params.id;
+    var query = 'DELETE FROM city WHERE ID = ' + id;
+
+    pool.getConnection(function (err, connection) {
+        if(err){throw err}
+        connection.query(query, function (err, rows, fields) {
+            connection.release();
+            if(err){throw err}
+            res.status(200).json(rows);
+        });
+    });
+});
+
+
 module.exports = pool;
 module.exports = router;
