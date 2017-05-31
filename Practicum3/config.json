@@ -3,5 +3,6 @@
   "server": "localhost",
   "password": "DEGnMLR7QSXRutJR",
   "username": "WorldAdmin",
-  "dbname": "world"
+  "dbname": "world",
+  "dbuser": "user"
 }
